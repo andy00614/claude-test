@@ -1,4 +1,7 @@
+"use client";
+
 import * as React from "react";
+import { usePathname } from "next/navigation";
 
 import { SearchForm } from "@/components/search-form";
 import { TeamSwitcher } from "@/components/team-switcher";
@@ -52,37 +55,43 @@ const data = {
           title: "Dashboard",
           url: "#",
           icon: RiScanLine,
+          isActive: false,
         },
         {
           title: "Insights",
           url: "#",
           icon: RiBardLine,
+          isActive: false,
         },
         {
           title: "Contacts",
-          url: "#",
+          url: "/dashboard",
           icon: RiUserFollowLine,
-          isActive: true,
+          isActive: false,
         },
         {
           title: "Tools",
-          url: "#",
+          url: "/tools",
           icon: RiCodeSSlashLine,
+          isActive: false,
         },
         {
           title: "Integration",
           url: "#",
           icon: RiLoginCircleLine,
+          isActive: false,
         },
         {
           title: "Layouts",
           url: "#",
           icon: RiLayoutLeftLine,
+          isActive: false,
         },
         {
           title: "Reports",
           url: "#",
           icon: RiLeafLine,
+          isActive: false,
         },
       ],
     },
@@ -94,11 +103,13 @@ const data = {
           title: "Settings",
           url: "#",
           icon: RiSettings3Line,
+          isActive: false,
         },
         {
           title: "Help Center",
           url: "#",
           icon: RiLeafLine,
+          isActive: false,
         },
       ],
     },
@@ -106,6 +117,8 @@ const data = {
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const pathname = usePathname();
+  
   return (
     <Sidebar {...props}>
       <SidebarHeader>
@@ -127,7 +140,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                     <SidebarMenuButton
                       asChild
                       className="group/menu-button font-medium gap-3 h-9 rounded-md bg-gradient-to-r hover:bg-transparent hover:from-sidebar-accent hover:to-sidebar-accent/40 data-[active=true]:from-primary/20 data-[active=true]:to-primary/5 [&>svg]:size-auto"
-                      isActive={item.isActive}
+                      isActive={pathname === item.url}
                     >
                       <a href={item.url}>
                         {item.icon && (

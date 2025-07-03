@@ -1,8 +1,4 @@
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Experiment 01 - Crafted.is",
-};
+"use client";
 
 import { AppSidebar } from "@/components/app-sidebar";
 import {

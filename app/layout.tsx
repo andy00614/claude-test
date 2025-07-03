@@ -1,4 +1,5 @@
 import { Inter } from "next/font/google";
+import { Toaster } from "sonner";
 
 import "./globals.css";
 
@@ -16,6 +17,7 @@ export default function RootLayout({
     <html lang="en" className="dark scheme-only-dark">
       <body className={`${fontSans.variable} font-sans antialiased`}>
         {children}
+        <Toaster />
       </body>
     </html>
   );
